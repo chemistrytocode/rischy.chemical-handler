@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,9 +8,8 @@ namespace rischy.chemical_handler.Controllers
     [Route("/liveness")]
     public class HealthCheckController : Controller
     {
-        // GET
         [HttpGet(Name = "Liveness")]
-        public string Get()
+        public string Liveness()
         {
             return "The rishy.chemical-handler is ready to go!";
         }
