@@ -11,12 +11,10 @@ namespace rischy.chemical_handler.Controllers
     public class HazardController : Controller
     {
         private readonly ChemicalService _chemicalService;
-
-        // Constructor
         public HazardController(ChemicalService chemicalService) => _chemicalService = chemicalService;
         
         [HttpGet(Name = "GetAllHazards")]
-        public async Task<List<HazardChemical>> GetHazards() => await _chemicalService.GetHazardAsync();
+        public async Task<List<ChemicalHazard>> GetHazards() => await _chemicalService.GetHazardAsync();
 
         
         [HttpPost(Name = "AddChemicals")]

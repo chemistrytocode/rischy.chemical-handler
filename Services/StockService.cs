@@ -9,7 +9,7 @@ namespace rischy.chemical_handler.Services
 {
     public class StockService
     {
-        private readonly IMongoCollection<StockChemical> _stockCollection;
+        private readonly IMongoCollection<ChemicalStock> _stockCollection;
         
         public StockService(
             IOptions<ChemicalStoreDatabaseSettings> chemicalsDatabaseSettings)
@@ -20,21 +20,21 @@ namespace rischy.chemical_handler.Services
             var mongoDatabase = mongoClient.GetDatabase(
                 chemicalsDatabaseSettings.Value.DatabaseName);
 
-            _stockCollection = mongoDatabase.GetCollection<StockChemical>(
+            _stockCollection = mongoDatabase.GetCollection<ChemicalStock>(
                 chemicalsDatabaseSettings.Value.StockCollectionName);
         }
         
-        public async Task<List<StockChemical>> GetAsync() =>
+        public async Task<List<ChemicalStock>> GetAsync() =>
             await _stockCollection.Find(_ => true).ToListAsync();
         
-        public async Task<StockChemical?> GetAsync(string id) =>
+        public async Task<ChemicalStock?> GetAsync(string id) =>
             await _stockCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
         
-        public async Task CreateAsync(StockChemical stockChemical) =>
-            await _stockCollection.InsertOneAsync(stockChemical);
+        public async Task CreateAsync(ChemicalStock chemicalStock) =>
+            await _stockCollection.InsertOneAsync(chemicalStock);
 
-        public async Task UpdateAsync(string id, StockChemical updatedChemical) =>
-            await _stockCollection.ReplaceOneAsync(x => x.Id == id, updatedChemical);
+        public async Task UpdateAsync(string id, ChemicalStock updated) =>
+            await _stockCollection.ReplaceOneAsync(x => x.Id == id, updated);
 
         public async Task RemoveAsync(string id) =>
             await _stockCollection.DeleteOneAsync(x => x.Id == id);

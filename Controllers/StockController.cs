@@ -11,12 +11,10 @@ namespace rischy.chemical_handler.Controllers
     public class StockController : Controller
     {
         private readonly ChemicalService _chemicalService;
-        
-        // Constructor
         public StockController(ChemicalService chemicalService) => _chemicalService = chemicalService;
         
         [HttpGet(Name = "GetStock")]
-        public async Task<List<StockChemical>> GetStock() => await _chemicalService.GetStockAsync();
+        public async Task<List<ChemicalStock>> GetStock() => await _chemicalService.GetStockAsync();
         
         [HttpPost(Name = "AddStock")]
         public string Post()

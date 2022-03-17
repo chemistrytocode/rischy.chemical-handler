@@ -20,18 +20,17 @@ namespace rischy.chemical_handler.Services
         }
 
         // Stock Service
-        public async Task<List<StockChemical>> GetStockAsync() => await _stockService.GetAsync();
-        public async Task<StockChemical?> GetStockAsync(string id) => await _stockService.GetAsync(id);
-        public async Task CreateStockAsync(StockChemical stockChemical) => await _stockService.CreateAsync(stockChemical);
-        public async Task UpdateStockAsync(string id, StockChemical updatedChemical) => await _stockService.UpdateAsync(id, updatedChemical);
+        public async Task<List<ChemicalStock>> GetStockAsync() => await _stockService.GetAsync();
+        public async Task<ChemicalStock?> GetStockAsync(string id) => await _stockService.GetAsync(id);
+        public async Task CreateStockAsync(ChemicalStock chemicalStock) => await _stockService.CreateAsync(chemicalStock);
+        public async Task UpdateStockAsync(string id, ChemicalStock updated) => await _stockService.UpdateAsync(id, updated);
         public async Task RemoveStockAsync(string id) => await _stockService.RemoveAsync(id);
         
-        
         // Hazard Service
-        public async Task<List<HazardChemical>> GetHazardAsync() => await _hazardService.GetAsync();
-        public async Task<HazardChemical?> GetHazardAsync(string id) => await _hazardService.GetAsync(id);
-        public async Task CreateHazardAsync(HazardChemical stockChemical) => await _hazardService.CreateAsync(stockChemical);
-        public async Task UpdateHazardAsync(string id, HazardChemical updatedChemical) => await _hazardService.UpdateAsync(id, updatedChemical);
+        public async Task<List<ChemicalHazard>> GetHazardAsync() => await _hazardService.GetAsync();
+        public async Task<ChemicalHazard?> GetHazardAsync(string id) => await _hazardService.GetAsync(id);
+        public async Task CreateHazardAsync(ChemicalHazard stock) => await _hazardService.CreateAsync(stock);
+        public async Task UpdateHazardAsync(string id, ChemicalHazard updated) => await _hazardService.UpdateAsync(id, updated);
         public async Task RemoveHazardAsync(string id) => await _hazardService.RemoveAsync(id);
     }
 }
