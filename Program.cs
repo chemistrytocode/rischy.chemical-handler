@@ -8,7 +8,7 @@ using rischy.chemical_handler.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add configuration
-builder.Services.Configure<ChemicalStoreDatabaseSettings>(
+builder.Services.Configure<ChemicalsDatabaseSettings>(
     builder.Configuration.GetSection("ChemicalStoreDatabase"));
 
 // Add services
@@ -30,7 +30,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 // ToDo: Add Https endpoint back in applicationUrl launchSettings to enable https
 app.UseHttpsRedirection();

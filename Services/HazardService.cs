@@ -12,7 +12,7 @@ namespace rischy.chemical_handler.Services
         private readonly IMongoCollection<ChemicalHazard> _hazardCollection;
         
         public HazardService(
-            IOptions<ChemicalStoreDatabaseSettings> chemicalsDatabaseSettings)
+            IOptions<ChemicalsDatabaseSettings> chemicalsDatabaseSettings)
         {
             var mongoClient = new MongoClient(
                 chemicalsDatabaseSettings.Value.ConnectionString);

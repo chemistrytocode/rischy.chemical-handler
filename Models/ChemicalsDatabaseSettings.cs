@@ -1,6 +1,6 @@
 namespace rischy.chemical_handler.MongoDB
 {
-    public record ChemicalStoreDatabaseSettings
+    public record ChemicalsDatabaseSettings
     {
         public string ConnectionString { get; set; } = null!;
 

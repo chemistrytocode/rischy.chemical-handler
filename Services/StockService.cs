@@ -12,7 +12,7 @@ namespace rischy.chemical_handler.Services
         private readonly IMongoCollection<ChemicalStock> _stockCollection;
         
         public StockService(
-            IOptions<ChemicalStoreDatabaseSettings> chemicalsDatabaseSettings)
+            IOptions<ChemicalsDatabaseSettings> chemicalsDatabaseSettings)
         {
             var mongoClient = new MongoClient(
                 chemicalsDatabaseSettings.Value.ConnectionString);
@@ -26,7 +26,7 @@ namespace rischy.chemical_handler.Services
         
         public async Task<List<ChemicalStock>> GetAsync() =>
             await _stockCollection.Find(_ => true).ToListAsync();
-        
+
         public async Task<ChemicalStock?> GetAsync(string id) =>
             await _stockCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
         
