@@ -1,8 +1,23 @@
+using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using rischy.chemical_handler.MongoDB;
+using rischy.chemical_handler.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add configuration
+builder.Services.Configure<ChemicalsDatabaseSettings>(
+    builder.Configuration.GetSection("ChemicalStoreDatabase"));
 
+// Add services
+builder.Services.AddSingleton<ChemicalService>();
+
+// Add controllers
 builder.Services.AddControllers();
+
+// Add Swagger
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
