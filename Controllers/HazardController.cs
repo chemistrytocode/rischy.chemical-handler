@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,18 +14,18 @@ namespace rischy.chemical_handler.Controllers
         public HazardController(ChemicalService chemicalService) => _chemicalService = chemicalService;
         
         [Route("/all-hazards")]
-        [HttpGet()]
+        [HttpGet]
         public async Task<List<ChemicalHazard>> GetHazards() => await _chemicalService.GetHazardAsync();
-
+        
         [Route("/hazards")]
-        [HttpPost()]
+        [HttpPost]
         public string PostHazards()
         {
             return "Adding Chemical data";
         }
         
         [Route("/hazards")]
-        [HttpGet("ids")]
+        [HttpGet]
         public async Task<IEnumerable<ChemicalHazard?>> GetHazardsById(string ids)
         {
             var listOfIds = ids.Split(",").ToList();
@@ -35,19 +34,16 @@ namespace rischy.chemical_handler.Controllers
         
         private async Task<IEnumerable<ChemicalHazard?>> FetchChemicalHazards(IEnumerable<string> ids)
         {
-            var getAllChemicalsFromIds = await Task.Run(() => ids.Select(async id => await FetchChemicalFromId(id)).ToList());
+            var getAllChemicalsFromIds = await Task.Run(() => 
+                ids.Select(async id => await FetchChemicalFromId(id))
+                    .ToList());
        
             await Task.WhenAll(getAllChemicalsFromIds);
             var filteredChemicalTaskResults = getAllChemicalsFromIds.Select(task => task.Result);
         
-            Console.WriteLine("FetchChemicalHazards complete, returning chemical hazards");
             return filteredChemicalTaskResults;
         }
         
-        private async Task<ChemicalHazard?> FetchChemicalFromId(string id)
-        {
-            Console.WriteLine($"Chemical search for: {id}");
-            return await _chemicalService.GetHazardAsync(id);
-        }
+        private async Task<ChemicalHazard?> FetchChemicalFromId(string id) => await _chemicalService.GetHazardAsync(id);
     }
 }

@@ -1,5 +1,3 @@
-using System;
-using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
 namespace rischy.chemical_handler.Controllers
