@@ -9,5 +9,7 @@ namespace rischy.chemical_handler.Models
         public string? Comment { get; set; }
 
         public ControlMeasures? ControlMeasures { get; set; }
+
+        public IEnumerable<EmergencyActions>? EmergencyActions { get; set; }
     }
 }
