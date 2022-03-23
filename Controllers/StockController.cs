@@ -17,9 +17,12 @@ namespace rischy.chemical_handler.Controllers
         public async Task<List<ChemicalStock>> GetStock() => await _chemicalService.GetStockAsync();
         
         [HttpPost(Name = "AddStock")]
-        public string Post()
-        {
-            return "Adding Stock";
-        }
+        public async Task PostStock(ChemicalStock chemicalStock) => await _chemicalService.CreateStockAsync(chemicalStock);
+        
+        [HttpPut(Name = "UpdateStock")]
+        public async Task PutStock(string id, ChemicalStock chemicalStock) => await _chemicalService.UpdateStockAsync(id, chemicalStock);
+
+        [HttpDelete(Name = "DeleteStock")]
+        public async Task DeleteStock(string id) => await _chemicalService.RemoveStockAsync(id);
     }
 }

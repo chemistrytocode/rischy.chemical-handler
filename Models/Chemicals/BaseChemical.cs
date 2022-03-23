@@ -6,6 +6,7 @@ namespace rischy.chemical_handler.Models
     public record Chemical
     {
         [BsonId]
+        [BsonIgnoreIfDefault]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
         
