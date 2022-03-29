@@ -11,5 +11,7 @@ namespace rischy.chemical_handler.Models
         public ControlMeasures? ControlMeasures { get; set; }
 
         public IEnumerable<EmergencyActions>? EmergencyActions { get; set; }
+        
+        public Disposal Disposal { get; set; }
     }
 }

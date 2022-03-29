@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using rischy.chemical_handler.MongoDB;
 using rischy.chemical_handler.Services;
 
@@ -14,13 +15,17 @@ builder.Services.Configure<ChemicalsDatabaseSettings>(
 // Add services
 builder.Services.AddSingleton<ChemicalService>();
 
-// Add controllers
-builder.Services.AddControllers();
+// Add controllers, remove nullable values in response
+builder.Services.AddControllers()
+    .AddJsonOptions(options => options.JsonSerializerOptions.IgnoreNullValues = true);
 
 // Add Swagger
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
 
 var app = builder.Build();
 
